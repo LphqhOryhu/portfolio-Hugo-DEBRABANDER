@@ -1,0 +1,122 @@
+<div class="min-h-screen bg-gradient-to-b from-secondary/5 to-white py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-secondary mb-4">{{pageTitle}}</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        {{pageDescription}}
+      </p>
+      <div class="mt-6">
+        <a *ngIf="!projectType" routerLink="/" class="bg-secondary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary/90 transition-colors inline-block">
+          Retour à l'accueil
+        </a>
+        <a *ngIf="projectType" routerLink="/projects" class="bg-secondary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary/90 transition-colors inline-block">
+          Retour aux projets
+        </a>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let project of projects; let i = index" class="project-card bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <!-- Project Image -->
+        <div class="h-48 bg-primary/30 relative overflow-hidden">
+          <!-- Display image if it's a regular image file -->
+          <img *ngIf="!project.image.endsWith('.pdf') && !project.image.endsWith('.pptx')"
+               [src]="project.image"
+               [alt]="project.title"
+               class="w-full h-full object-cover cursor-pointer"
+               (click)="openImageModal(project.image, project.title)">
+
+          <!-- Display placeholder with title for PDF or PPTX files -->
+          <div *ngIf="project.image.endsWith('.pdf') || project.image.endsWith('.pptx')"
+               class="absolute inset-0 flex items-center justify-center text-secondary/50 text-lg font-semibold">
+            {{project.title}}
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/50 to-secondary/30"></div>
+          </div>
+        </div>
+
+        <!-- Project Info -->
+        <div class="p-6">
+          <!-- Special handling for portfolio project -->
+          <h3 *ngIf="project.title === 'Mon Ancien Portfolio' || (project.originalTitle && project.originalTitle === 'Mon Ancien Portfolio')"
+              class="text-xl font-bold text-secondary mb-2 underline"
+              [innerHTML]="portfolioTitleHtml"></h3>
+          <!-- Regular title for other projects -->
+          <h3 *ngIf="project.title !== 'Mon Ancien Portfolio' && (!project.originalTitle || project.originalTitle !== 'Mon Ancien Portfolio')"
+              class="text-xl font-bold text-secondary mb-2">{{project.title}}</h3>
+          <p class="text-gray-600 mb-4">{{project.description}}</p>
+
+          <!-- Technologies -->
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span *ngFor="let tech of project.technologies"
+                  class="px-3 py-1 bg-primary/20 text-secondary text-sm rounded-full">
+              {{tech}}
+            </span>
+          </div>
+
+          <!-- Link -->
+          <a *ngIf="!projectType && project.link.startsWith('/')"
+             [routerLink]="project.link"
+             class="inline-block mt-2 text-primary font-medium hover:text-secondary transition-colors">
+            Voir les détails →
+          </a>
+          <a *ngIf="!projectType && !project.link.startsWith('/')"
+             [href]="project.link"
+             target="_blank"
+             class="inline-block mt-2 text-primary font-medium hover:text-secondary transition-colors">
+            Voir le projet →
+          </a>
+          <span *ngIf="projectType && project.link === '#'"
+                class="inline-block mt-2 text-gray-400">
+          </span>
+          <a *ngIf="projectType && project.link !== '#'"
+             [href]="project.link"
+             target="_blank"
+             class="inline-block mt-2 text-primary font-medium hover:text-secondary transition-colors">
+            Voir le projet →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="mt-16 bg-secondary text-white p-8 rounded-xl text-center">
+      <h2 class="text-3xl font-bold mb-4">Intéressé par mon travail?</h2>
+      <p class="text-lg mb-6 max-w-2xl mx-auto">
+        Si vous êtes intéressé par mon travail ou si vous avez un projet en tête, n'hésitez pas à me contacter.
+      </p>
+      <a href="mailto:hugodebrabander27310@gmail.com" class="inline-block bg-primary text-secondary px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+        Me contacter
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-gray-600">
+      <p>© 2025 Hugo DEBRABANDER - Portfolio</p>
+      <div class="mt-2 flex justify-center space-x-4">
+        <a href="#" class="text-secondary hover:text-primary transition-colors">LinkedIn</a>
+        <a href="#" class="text-secondary hover:text-primary transition-colors">GitHub</a>
+        <a href="#" class="text-secondary hover:text-primary transition-colors">Email</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- Image Modal -->
+<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75" (click)="closeImageModal()">
+  <div class="relative max-w-4xl max-h-[90vh] overflow-auto bg-white rounded-lg shadow-xl" (click)="$event.stopPropagation()">
+    <!-- Close button -->
+    <button class="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md text-secondary hover:text-primary transition-colors" (click)="closeImageModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Image -->
+    <div class="p-2">
+      <img [src]="selectedImage" [alt]="selectedImageTitle" class="max-w-full max-h-[80vh] object-contain">
+      <div class="mt-2 p-2 text-center text-secondary font-medium">{{selectedImageTitle}}</div>
+    </div>
+  </div>
+</div>

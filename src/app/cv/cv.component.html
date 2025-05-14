@@ -1,0 +1,133 @@
+<div class="min-h-screen bg-gradient-to-b from-primary/10 to-white py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+    <!-- Header -->
+    <div class="bg-secondary text-white p-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div>
+          <h1 class="text-4xl font-bold">Hugo DEBRABANDER</h1>
+          <p class="text-xl mt-2">Alternant ingénieur en informatique</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <a routerLink="/" class="bg-primary text-secondary px-4 py-2 rounded-lg font-medium hover:bg-primary/80 transition-colors">
+            Retour à l'accueil
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-8">
+      <!-- Contact Information -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Contact</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center">
+              <span class="material-icons text-primary mr-2">phone</span>
+              <p class="text-gray-700">{{contactInfo.phone}}</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center">
+              <span class="material-icons text-primary mr-2">email</span>
+              <p class="text-gray-700">{{contactInfo.email}}</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center">
+              <span class="material-icons text-primary mr-2">home</span>
+              <p class="text-gray-700">{{contactInfo.address}}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professional Qualities -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Qualités professionnelles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div *ngFor="let quality of qualities" class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+            <h3 class="text-lg font-semibold text-secondary">{{quality.name}}</h3>
+            <p class="text-gray-700 mt-1">{{quality.description}}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Parcours Professionnel</h2>
+        <div class="space-y-6">
+          <div *ngFor="let exp of experience" class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+            <div class="flex flex-col sm:flex-row justify-between">
+              <h3 class="text-xl font-semibold text-secondary">{{exp.position}}</h3>
+              <span class="text-primary font-medium">{{exp.period}}</span>
+            </div>
+            <p class="text-gray-600 font-medium">{{exp.company}}</p>
+            <p class="text-gray-700 mt-2">{{exp.description}}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Formation</h2>
+        <div class="space-y-6">
+          <div *ngFor="let edu of education" class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+            <div class="flex flex-col sm:flex-row justify-between">
+              <h3 class="text-xl font-semibold text-secondary">{{edu.degree}}</h3>
+              <span class="text-primary font-medium">{{edu.period}}</span>
+            </div>
+            <p class="text-gray-600 font-medium">{{edu.institution}}</p>
+            <p class="text-gray-700 mt-2">{{edu.description}}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Compétences</h2>
+        <div class="space-y-6">
+          <div *ngFor="let category of skillCategories" class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+            <h3 class="text-lg font-semibold text-secondary mb-2">{{category.name}}</h3>
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let skill of category.skills" class="bg-primary/20 text-secondary px-3 py-1 rounded-full text-sm">
+                {{skill}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Languages -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Langues</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div *ngFor="let lang of languages" class="bg-gray-50 p-4 rounded-lg text-center">
+            <h3 class="text-lg font-semibold text-secondary">{{lang.name}}</h3>
+            <p class="text-primary">{{lang.level}}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hobbies -->
+      <section>
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Loisirs</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+          <div *ngFor="let hobby of hobbies" class="bg-gray-50 p-4 rounded-lg text-center hover:bg-primary/10 transition-colors">
+            <p class="text-secondary">{{hobby}}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-secondary text-white p-6 text-center">
+      <p>© 2025 Hugo DEBRABANDER - Portfolio</p>
+      <div class="mt-2 flex justify-center space-x-4">
+        <a target="_blank"  href="https://www.linkedin.com/in/hugo-de-brabander/" class="text-primary hover:text-white transition-colors">LinkedIn</a>
+        <a target="_blank" href="https://github.com/LphqhOryhu" class="text-primary hover:text-white transition-colors">GitHub</a>
+        <a href="mailto:{{contactInfo.email}}" class="text-primary hover:text-white transition-colors">Email</a>
+      </div>
+    </div>
+  </div>
+</div>

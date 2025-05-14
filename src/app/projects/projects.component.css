@@ -1,0 +1,107 @@
+/* Project card animations */
+@keyframes fadeInStagger {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card {
+  animation: fadeInStagger 0.5s ease-out forwards;
+  animation-delay: calc(var(--index) * 0.1s);
+  opacity: 0;
+}
+
+/* Interactive hover effects */
+.project-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover .h-48 {
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+/* Technology tags hover effect */
+.px-3.py-1.bg-primary\/20 {
+  transition: all 0.3s ease;
+}
+
+.px-3.py-1.bg-primary\/20:hover {
+  background-color: rgba(192, 223, 239, 0.5); /* primary color with 50% opacity */
+  transform: translateY(-2px);
+}
+
+/* Animated link arrow */
+a[href]:hover::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 0.3em;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  animation: arrowBounce 1s infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% {
+    transform: rotate(45deg) translate(0, 0);
+  }
+  50% {
+    transform: rotate(45deg) translate(3px, -3px);
+  }
+}
+
+/* Portfolio link bounce animation */
+@keyframes portfolioBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.portfolio-link {
+  color: #0078d4; /* primary color */
+  font-weight: bold;
+  text-decoration: underline;
+  display: inline-block;
+  animation: portfolioBounce 1.5s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.portfolio-link:hover {
+  animation-play-state: running;
+  color: #005a9e; /* darker shade of primary */
+}
+
+/* Make the animation play occasionally to draw attention */
+@keyframes attention {
+  0%, 85%, 100% {
+    animation-play-state: paused;
+  }
+  5%, 80% {
+    animation-play-state: running;
+  }
+}
+
+.portfolio-link {
+  animation: portfolioBounce 1.5s ease-in-out infinite, attention 15s ease-in-out infinite;
+}
+
+/* Contact CTA hover effect */
+.mt-16.bg-secondary {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mt-16.bg-secondary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(53, 53, 53, 0.2);
+}

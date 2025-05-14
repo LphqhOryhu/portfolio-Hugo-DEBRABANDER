@@ -1,0 +1,80 @@
+/* Animations for CV elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: calc(var(--animation-order) * 0.1s);
+  opacity: 0;
+}
+
+section:nth-child(1) {
+  --animation-order: 1;
+}
+
+section:nth-child(2) {
+  --animation-order: 2;
+}
+
+section:nth-child(3) {
+  --animation-order: 3;
+}
+
+section:nth-child(4) {
+  --animation-order: 4;
+}
+
+section:nth-child(5) {
+  --animation-order: 5;
+}
+
+section:nth-child(6) {
+  --animation-order: 6;
+}
+
+section:nth-child(7) {
+  --animation-order: 7;
+}
+
+/* Hover effects */
+.bg-gray-50:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+/* Skill tag animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.bg-primary\/20 {
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: calc(var(--animation-order) * 0.05s);
+  opacity: 0;
+}
+
+/* Contact icon animation */
+.material-icons {
+  transition: transform 0.3s ease;
+}
+
+.flex:hover .material-icons {
+  transform: scale(1.2);
+  color: var(--primary-color);
+}
+
+/* Hobby item animation */
+.hover\:bg-primary\/10:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
