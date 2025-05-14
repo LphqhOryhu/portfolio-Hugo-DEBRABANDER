@@ -23,7 +23,7 @@ interface Project {
 export class ProjectsComponent implements AfterViewInit, OnInit {
   projectType: string | null = null;
   pageTitle: string = 'Mes Réalisations';
-  pageDescription: string = 'Découvrez une sélection de projets sur lesquels j\'ai travaillé, démontrant mes compétences en développement web et design.';
+  pageDescription: string = 'Explorez des projets concrets mettant en valeur mes compétences en développement, en algorithmie et en réseaux.';
 
   // Modal properties
   showModal: boolean = false;
@@ -98,7 +98,7 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
           this.projects = this.portfolioProjects;
           break;
         case 'assuranceplus':
-          this.pageTitle = 'Projet ASSURANCEPLUS';
+          this.pageTitle = 'Projet Assurance+';
           this.pageDescription = 'Un projet de gestion d\'assurance développé avec des technologies modernes.';
           this.projects = this.assurancePlusProjects;
           break;
@@ -108,12 +108,12 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
           this.projects = this.easySaveProjects;
           break;
         case 'recherche-operationnel':
-          this.pageTitle = 'Projet Recherche Opérationnelle';
+          this.pageTitle = 'Projet R.O.';
           this.pageDescription = 'Application des méthodes de recherche opérationnelle pour optimiser des processus.';
           this.projects = this.rechercheOperationnelProjects;
           break;
         case 'gestionstage':
-          this.pageTitle = 'Projet GestionStage';
+          this.pageTitle = 'Projet Stage';
           this.pageDescription = 'Une plateforme de gestion des stages pour les étudiants et les entreprises.';
           this.projects = this.gestionStageProjects;
           break;
@@ -139,7 +139,7 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
       link: '/projects/portfolio'
     },
     {
-      title: 'Projet ASSURANCEPLUS',
+      title: 'Projet Assurance+',
       description: 'Un projet de gestion d\'assurance intégrant sécurité réseau, supervision et services d\'infrastructure.',
       technologies: ['VPN', 'Proxy', 'DNS', 'Active Directory', 'Hyperviseur'],
       image: 'assets/images/ASSURANCEPLUS.pptx',
@@ -153,14 +153,14 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
       link: '/projects/easysave'
     },
     {
-      title: 'Projet Recherche Opérationnelle',
+      title: 'Projet R.O.',
       description: 'Application d\'algorithmes évolués pour répondre à des enjeux logistiques et environnementaux.',
       technologies: ['Python', 'Recuit simulé', 'Algorithme génétique', 'Optimisation de graphes'],
       image: 'assets/images/ro.png',
       link: '/projects/recherche-operationnel'
     },
     {
-      title: 'Projet GestionStage',
+      title: 'Projet Stage',
       description: 'Une plateforme de gestion des stages pour les étudiants et les entreprises.',
       technologies: ['PHP', 'MySQL', 'Bootstrap'],
       image: 'assets/images/gestion.png',
@@ -250,7 +250,7 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
       title: 'Cryptage & Sécurité',
       description: 'Cryptage des fichiers, suivi des opérations, pause/reprise',
       technologies: ['C#', 'Cryptographie', 'Sécurité', 'Journalisation'],
-      image: 'assets/images/Esey Save.pdf',
+      image: 'assets/images/Easy Save.pdf',
       link: '#'
     },
     {
@@ -264,7 +264,7 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
       title: 'Vision Long Terme',
       description: 'Backup déporté, planification, extensions futures',
       technologies: ['C#', 'Planification', 'Architecture évolutive'],
-      image: 'assets/images/Esey Save.pdf',
+      image: 'assets/images/Easy Save.pdf',
       link: '#'
     }
   ];
