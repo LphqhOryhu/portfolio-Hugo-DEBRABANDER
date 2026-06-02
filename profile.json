@@ -1,0 +1,315 @@
+{
+  "personal": {
+    "name": "Hugo DE BRABANDER",
+    "title": "Apprenti Ingénieur Informatique",
+    "phone": "+33 7 81 73 18 12",
+    "email": "hugodebrabander27310@gmail.com",
+    "address": "37 Rue Gambetta, Le Petit-Quevilly 76140",
+    "github": "",
+    "linkedin": ""
+  },
+  "skills": [
+    {
+      "id": "sk_web_frontend",
+      "name": "Développement Frontend",
+      "category": "web",
+      "level": "avancé",
+      "description": "Angular, React, Next.js avec TypeScript et Tailwind CSS",
+      "entries": ["Angular", "React", "Next.js", "TypeScript", "Tailwind CSS"],
+      "keywords": ["frontend", "react", "angular", "next.js", "nextjs", "typescript", "tailwind", "javascript", "html", "css", "spa", "web", "interface", "ui", "composant"]
+    },
+    {
+      "id": "sk_web_backend",
+      "name": "Développement Backend",
+      "category": "web",
+      "level": "avancé",
+      "description": "API REST avec Node.js et PHP (Symfony)",
+      "entries": ["Node.js", "PHP/Symfony", "API REST", "Express"],
+      "keywords": ["backend", "api", "rest", "node.js", "nodejs", "php", "symfony", "serveur", "endpoint", "microservice"]
+    },
+    {
+      "id": "sk_database",
+      "name": "Bases de données",
+      "category": "data",
+      "level": "intermédiaire",
+      "description": "SQL Server, MySQL et solutions NoSQL",
+      "entries": ["SQL", "SQL Server", "MySQL", "PostgreSQL", "MongoDB"],
+      "keywords": ["base de données", "sql", "sql server", "mysql", "nosql", "mongodb", "postgresql", "bdd", "requête", "modélisation", "sgbd"]
+    },
+    {
+      "id": "sk_bigdata",
+      "name": "Big Data",
+      "category": "data",
+      "level": "intermédiaire",
+      "description": "Création d'entrepôt de données, ETL, HDFS, Hive, Talend",
+      "entries": ["ETL", "HDFS", "Hive", "Talend", "Hadoop"],
+      "keywords": ["big data", "etl", "hdfs", "hive", "talend", "data warehouse", "entrepôt de données", "hadoop", "data lake", "pipeline de données", "traitement de données massives"]
+    },
+    {
+      "id": "sk_data_analysis",
+      "name": "Data Analysis",
+      "category": "data",
+      "level": "intermédiaire",
+      "description": "Dashboards dynamiques, KPI, analyses statistiques",
+      "entries": ["Dashboards", "KPI", "Reporting", "Statistiques", "Power BI"],
+      "keywords": ["data analysis", "analyse de données", "dashboard", "kpi", "statistiques", "visualisation", "reporting", "power bi", "tableau", "indicateurs", "métriques"]
+    },
+    {
+      "id": "sk_ml",
+      "name": "Machine Learning",
+      "category": "data",
+      "level": "intermédiaire",
+      "description": "Python, scikit-learn, régression linéaire, random forest, classification, clustering",
+      "entries": ["Python", "scikit-learn", "Random Forest", "Classification", "Régression linéaire"],
+      "keywords": ["machine learning", "ml", "intelligence artificielle", "ia", "scikit-learn", "sklearn", "régression", "classification", "random forest", "clustering", "modèle prédictif", "apprentissage automatique", "deep learning", "données", "python", "feature engineering", "entraînement"]
+    },
+    {
+      "id": "sk_python",
+      "name": "Python & Algorithmie",
+      "category": "dev",
+      "level": "avancé",
+      "description": "Python, résolution de problèmes complexes, recherche opérationnelle",
+      "entries": ["Python", "NumPy", "pandas", "Algorithmie", "Optimisation"],
+      "keywords": ["python", "algorithmie", "algorithme", "optimisation", "recherche opérationnelle", "script", "automatisation"]
+    },
+    {
+      "id": "sk_csharp",
+      "name": "Développement C#",
+      "category": "dev",
+      "level": "intermédiaire",
+      "description": "C# orienté objet, multithreading, gestion des processus",
+      "entries": ["C#", "Orienté objet", "Multithreading", ".NET"],
+      "keywords": ["c#", "csharp", ".net", "dotnet", "oop", "orienté objet", "multithreading", "logiciel", "windows", "application desktop"]
+    },
+    {
+      "id": "sk_devops",
+      "name": "DevOps",
+      "category": "devops",
+      "level": "intermédiaire",
+      "description": "Docker, Git, CI/CD",
+      "entries": ["Docker", "Git", "CI/CD", "GitHub Actions"],
+      "keywords": ["devops", "docker", "git", "ci/cd", "github", "gitlab", "conteneur", "pipeline", "déploiement", "intégration continue", "kubernetes", "infrastructure"]
+    },
+    {
+      "id": "sk_iot",
+      "name": "IoT & Systèmes Embarqués",
+      "category": "iot",
+      "level": "intermédiaire",
+      "description": "Protocoles Zigbee, MQTT, LoRa, BLE — communication inter-objets",
+      "entries": ["Zigbee", "MQTT", "LoRa", "BLE", "OCPP"],
+      "keywords": ["iot", "internet des objets", "embarqué", "zigbee", "mqtt", "lora", "ble", "bluetooth", "capteur", "temps réel", "firmware", "microcontrôleur", "raspberry", "arduino"]
+    },
+    {
+      "id": "sk_network",
+      "name": "Réseaux & Cybersécurité",
+      "category": "network",
+      "level": "intermédiaire",
+      "description": "Modèle OSI, adressage IP, routage, TCP/UDP, sécurisation des flux",
+      "entries": ["Modèle OSI", "TCP/UDP", "Sécurisation des flux", "Routage", "VPN"],
+      "keywords": ["réseau", "network", "osi", "tcp", "udp", "ip", "routage", "commutation", "cybersécurité", "sécurité", "pare-feu", "vpn", "protocole", "infrastructure réseau"]
+    },
+    {
+      "id": "sk_agile",
+      "name": "Gestion de projet Agile",
+      "category": "management",
+      "level": "intermédiaire",
+      "description": "SCRUM, Agile, Git, collaboration pluridisciplinaire",
+      "entries": ["SCRUM", "Agile", "Kanban", "Git", "Collaboration pluridisciplinaire"],
+      "keywords": ["agile", "scrum", "kanban", "gestion de projet", "sprint", "backlog", "jira", "confluence", "collaboration", "équipe", "pluridisciplinaire"]
+    },
+    {
+      "id": "sk_english",
+      "name": "Anglais B2",
+      "category": "language",
+      "level": "B2",
+      "description": "Communication technique et orale en anglais",
+      "keywords": ["anglais", "english", "b2", "langue", "international", "technique"]
+    },
+    {
+      "id": "sk_german",
+      "name": "Allemand A2",
+      "category": "language",
+      "level": "A2",
+      "description": "Notions d'allemand",
+      "keywords": ["allemand", "german", "a2"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "pj_ocpp",
+      "name": "Simulateur de borne de recharge OCPP",
+      "context": "SGA Mobility",
+      "description": "Développement d'un simulateur complet de borne de recharge électrique utilisant le protocole OCPP (Open Charge Point Protocol) pour tester les systèmes de supervision sans matériel physique.",
+      "stack": ["Node.js", "OCPP", "WebSocket", "JavaScript"],
+      "keywords": ["ocpp", "borne de recharge", "électrique", "véhicule électrique", "mobilité", "simulation", "protocole", "websocket", "iot", "temps réel", "node.js"],
+      "achievements": [
+        "Simulation complète du cycle de vie d'une borne (boot, autorisation, session de charge)",
+        "Remplacement du besoin de matériel physique pour les tests"
+      ]
+    },
+    {
+      "id": "pj_supervision",
+      "name": "Refonte complète de la supervision",
+      "context": "SGA Mobility",
+      "description": "Refonte de l'interface de supervision du parc de bornes de recharge — nouvelle architecture frontend, amélioration UX et ajout de fonctionnalités de monitoring temps réel.",
+      "stack": ["Angular", "TypeScript", "REST API", "Dashboard"],
+      "keywords": ["supervision", "dashboard", "monitoring", "temps réel", "angular", "typescript", "frontend", "ux", "interface", "kpi", "refonte"],
+      "achievements": [
+        "Refonte complète de l'architecture frontend",
+        "Amélioration significative de l'expérience utilisateur",
+        "Intégration de nouveaux indicateurs de monitoring temps réel"
+      ]
+    },
+    {
+      "id": "pj_web_maintenance",
+      "name": "Maintenance évolutive site web",
+      "context": "SGA Mobility",
+      "description": "Correction d'issues et ajout de nouvelles fonctionnalités sur le site web de SGA Mobility.",
+      "stack": ["Web", "Frontend", "Backend"],
+      "keywords": ["maintenance", "web", "bug fix", "fonctionnalités", "évolutive", "issue", "correctif"],
+      "achievements": [
+        "Résolution de bugs en production",
+        "Développement de nouvelles fonctionnalités selon les besoins métier"
+      ]
+    },
+    {
+      "id": "pj_twyster",
+      "name": "TwYster — Réseau social microservices",
+      "context": "Architecture microservices",
+      "description": "Conception et développement d'un réseau social type Twitter/X en architecture microservices. 8 services indépendants (User, Auth, Profile, Post, Like, Message, Media, Signalement), orchestrés via Docker et Nginx. Frontend React mobile-first, backend Node.js/Express, authentification JWT, bases de données hybrides MongoDB et PostgreSQL.",
+      "stack": ["React", "Node.js", "Express", "Docker", "Nginx", "MongoDB", "PostgreSQL", "Mongoose", "Prisma", "JWT", "REST API"],
+      "keywords": ["microservices", "react", "node.js", "express", "docker", "nginx", "mongodb", "postgresql", "prisma", "mongoose", "jwt", "authentification", "api rest", "réseau social", "scalabilité", "conteneur", "déploiement", "mobile-first", "frontend", "backend", "fullstack", "architecture logicielle"],
+      "achievements": [
+        "Architecture microservices avec 8 services découplés, orchestrés via Docker et reverse proxy Nginx",
+        "Stack hybride : React mobile-first, Node.js/Express, MongoDB (Mongoose) et PostgreSQL (Prisma), authentification JWT",
+        "Fonctionnalités complètes : posts, likes, messagerie privée, upload média, modération, internationalisation"
+      ]
+    },
+    {
+      "id": "pj_bigdata",
+      "name": "Entrepôt de données & pipeline ETL",
+      "context": "Big Data & ETL",
+      "description": "Conception et déploiement d'un entrepôt de données (Data Warehouse) avec pipeline ETL complet : extraction depuis sources hétérogènes, transformation et chargement vers HDFS/Hive via Talend.",
+      "stack": ["Talend", "HDFS", "Hive", "Hadoop", "SQL", "ETL"],
+      "keywords": ["big data", "etl", "data warehouse", "entrepôt de données", "hdfs", "hive", "talend", "hadoop", "pipeline", "transformation", "données", "reporting", "indicateurs", "kpi", "alimentation", "extraction", "sql", "analytique", "tableaux de bord", "fiabilisation", "qualité des données"],
+      "achievements": [
+        "Conception du modèle de données en étoile",
+        "Développement des jobs ETL pour l'alimentation automatique",
+        "Requêtes analytiques HiveQL pour reporting"
+      ]
+    },
+    {
+      "id": "pj_ml",
+      "name": "Prédiction d'attrition RH — IBM HR Analytics",
+      "context": "Machine Learning",
+      "description": "Pipeline ML complet de prédiction de départ de salariés (classification binaire) sur le dataset IBM HR Analytics (4 410 employés, 5 fichiers CSV). Nettoyage, feature engineering, split anti-leakage, comparaison de 6 modèles et analyse what-if.",
+      "stack": ["Python", "scikit-learn", "pandas", "numpy", "matplotlib", "Google Colab"],
+      "keywords": ["machine learning", "classification", "random forest", "logistic regression", "svm", "knn", "decision tree", "scikit-learn", "pandas", "numpy", "roc", "auc", "feature engineering", "données rh", "prédiction", "intelligence artificielle", "analyse de données", "python", "données", "ressources humaines", "ressources", "humaines", "analyse", "reporting", "indicateurs", "qualité", "sociales", "salariés", "employés", "attrition"],
+      "achievements": [
+        "Pipeline complet : chargement multi-CSV, nettoyage, encodage, split train/test anti-leakage",
+        "Comparaison de 6 modèles : Perceptron, Régression Logistique, SVM, KNN, Decision Tree, Random Forest",
+        "Évaluation par AUC/ROC, matrice de confusion et rapport de classification",
+        "Analyse what-if : identification des variables RH à fort impact sur l'attrition"
+      ]
+    },
+    {
+      "id": "pj_vrp",
+      "name": "Résolution du VRP par métaheuristiques",
+      "context": "Recherche Opérationnelle",
+      "description": "Implémentation et comparaison de trois algorithmes d'optimisation pour résoudre le problème de tournées de véhicules (VRP) sur un graphe réel : algorithme génétique, recuit simulé et heuristique du plus proche voisin.",
+      "stack": ["Python", "NumPy", "NetworkX", "JSON"],
+      "keywords": ["recherche opérationnelle", "optimisation", "algorithme génétique", "recuit simulé", "heuristique", "vrp", "graphe", "python", "numpy", "optimisation combinatoire", "metaheuristique", "algorithme", "complexité", "tournées", "véhicules", "np-difficile"],
+      "achievements": [
+        "Algorithme génétique : sélection par tournoi, croisement ordonné, mutation intra/inter-chemin",
+        "Recuit simulé : refroidissement adaptatif, 3 opérateurs de voisinage (swap, move, inter-swap)",
+        "Heuristique gloutonne du plus proche voisin comme solution de référence",
+        "Comparaison quantitative des performances (coût, temps d'exécution) sur instance réelle"
+      ]
+    },
+    {
+      "id": "pj_iot",
+      "name": "Projet IoT — Communication inter-objets",
+      "context": "IoT & Systèmes embarqués",
+      "description": "Architecture IoT avec protocoles Zigbee, MQTT, LoRa et BLE pour la communication entre objets connectés et remontée de données vers des services tiers.",
+      "stack": ["MQTT", "Zigbee", "LoRa", "BLE", "Python"],
+      "keywords": ["iot", "internet des objets", "mqtt", "zigbee", "lora", "ble", "bluetooth", "capteur", "embarqué", "temps réel", "objets connectés"],
+      "achievements": [
+        "Mise en œuvre de l'architecture de communication multi-protocoles",
+        "Remontée de données vers services tiers"
+      ]
+    }
+  ],
+  "experiences": [
+    {
+      "id": "exp_sga",
+      "role": "Alternant Développeur",
+      "company": "SGA Mobility",
+      "location": "France",
+      "start": "2024-09",
+      "end": "2025-09",
+      "duration": "1 an",
+      "type": "alternance",
+      "technologies": ["Angular", "Node.js", "TypeScript", "OCPP", "WebSocket", "Docker", "Git"],
+      "keywords": ["alternance", "développement web", "angular", "node.js", "typescript", "ocpp", "mobilité électrique", "supervision", "borne de recharge", "iot", "agile", "fullstack"],
+      "achievements": [
+        "Refonte d'un simulateur OCPP existant non conforme aux normes : implémentation complète du protocole OCPP (boot, autorisation, session de charge), simulation de cas réels validés — supprime une longue étape de vérification manuelle et rapproche les tests de la réalité terrain",
+        "Migration de l'interface de supervision du parc de bornes vers Angular : conception de la nouvelle architecture frontend, amélioration UX et intégration d'indicateurs de monitoring temps réel",
+        "Maintenance évolutive du site web : résolution de bugs en production et développement de fonctionnalités selon les besoins métier",
+        "Conception en autonomie complète de l'architecture d'un système d'abonnement et de gestion des droits d'accès, en modélisant l'impact sur la solution existante et en implémentant la logique backend"
+      ]
+    },
+    {
+      "id": "exp_flazio",
+      "role": "Stagiaire Développeur",
+      "company": "Flazio",
+      "location": "Italie",
+      "start": "2023-05",
+      "end": "2023-06",
+      "duration": "2 mois",
+      "type": "stage",
+      "technologies": ["AG-GRID", "JavaScript", "HTML/CSS"],
+      "keywords": ["stage", "international", "italie", "javascript", "ag-grid", "documentation", "multilingue", "frontend"],
+      "achievements": [
+        "Intégration d'AG-GRID dans l'application au sein d'une équipe de 20 développeurs italiens, avec coordination technique en anglais auprès du management",
+        "Rédaction de la documentation technique en trois langues (français, anglais, italien) pour garantir la maintenabilité de l'intégration par les équipes futures"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu_cesi",
+      "degree": "Cycle Ingénieur en Alternance (FISA)",
+      "field": "Informatique",
+      "school": "CESI",
+      "location": "Saint-Étienne-du-Rouvray (76800)",
+      "start": "2024",
+      "end": "2027",
+      "current": true,
+      "note": "Recherche alternance — 3ème année ingénieur · Disponible immédiatement",
+      "keywords": ["ingénieur", "informatique", "alternance", "cesi"]
+    },
+    {
+      "id": "edu_bts",
+      "degree": "BTS SIO (diplômé)",
+      "field": "Solutions Logicielles et Applications Métiers",
+      "school": "Campus La Châtaigneraie",
+      "location": "Le Mesnil-Esnard (76240)",
+      "start": "2022",
+      "end": "2024",
+      "current": false,
+      "keywords": ["bts", "sio", "logiciel", "applications"]
+    }
+  ],
+  "soft_skills": [
+    "Rigueur et sens du détail",
+    "Esprit critique et autonomie",
+    "Capacité à vulgariser les résultats d'analyse",
+    "Travail collaboratif avec les équipes métier"
+  ],
+  "hobbies": [
+    "Volleyball (loisir et compétitif)",
+    "Art visuel",
+    "Projets personnels en informatique",
+    "Voyage et découverte de nouvelles cultures"
+  ]
+}

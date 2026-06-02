@@ -1,48 +1,61 @@
 <div class="min-h-screen bg-gradient-to-b from-primary/10 to-white py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+
     <!-- Header -->
     <div class="bg-secondary text-white p-8">
-      <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 class="text-4xl font-bold">Hugo DEBRABANDER</h1>
-          <p class="text-xl mt-2">Alternant ingénieur en informatique</p>
+          <h1 class="text-4xl font-bold">Hugo DE BRABANDER</h1>
+          <p class="text-xl mt-1 text-primary">Apprenti Ingénieur Informatique</p>
+          <span class="inline-block mt-3 bg-primary/20 border border-primary/40 text-primary text-sm px-3 py-1 rounded-full">
+            En recherche d'alternance &middot; 3ème année ingénieur &middot; Disponible immédiatement
+          </span>
         </div>
-        <div class="mt-4 md:mt-0">
-          <a routerLink="/" class="bg-primary text-secondary px-4 py-2 rounded-lg font-medium hover:bg-primary/80 transition-colors">
-            Retour à l'accueil
-          </a>
-        </div>
+        <a routerLink="/" class="bg-primary text-secondary px-4 py-2 rounded-lg font-medium hover:bg-primary/80 transition-colors whitespace-nowrap">
+          Retour à l'accueil
+        </a>
       </div>
     </div>
 
     <!-- Content -->
     <div class="p-8">
-      <!-- Contact Information -->
+
+      <!-- Contact -->
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Contact</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="bg-gray-50 p-4 rounded-lg">
-            <div class="flex items-center">
-              <span class="material-icons text-primary mr-2">phone</span>
+            <div class="flex items-center gap-2">
+              <span class="material-icons text-primary">phone</span>
               <p class="text-gray-700">{{contactInfo.phone}}</p>
             </div>
           </div>
           <div class="bg-gray-50 p-4 rounded-lg">
-            <div class="flex items-center">
-              <span class="material-icons text-primary mr-2">email</span>
-              <p class="text-gray-700 break-all">{{contactInfo.email}}</p>
+            <div class="flex items-center gap-2">
+              <span class="material-icons text-primary">email</span>
+              <a [href]="'mailto:' + contactInfo.email" class="text-gray-700 hover:text-primary break-all">{{contactInfo.email}}</a>
             </div>
           </div>
           <div class="bg-gray-50 p-4 rounded-lg">
-            <div class="flex items-center">
-              <span class="material-icons text-primary mr-2">home</span>
+            <div class="flex items-center gap-2">
+              <span class="material-icons text-primary">home</span>
               <p class="text-gray-700">{{contactInfo.address}}</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center gap-4">
+              <a [href]="contactInfo.linkedin" target="_blank" class="flex items-center gap-1 text-secondary hover:text-primary transition-colors font-medium text-sm">
+                <span class="material-icons text-sm">open_in_new</span> LinkedIn
+              </a>
+              <a [href]="contactInfo.github" target="_blank" class="flex items-center gap-1 text-secondary hover:text-primary transition-colors font-medium text-sm">
+                <span class="material-icons text-sm">open_in_new</span> GitHub
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Professional Qualities -->
+      <!-- Qualités professionnelles -->
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Qualités professionnelles</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -53,44 +66,93 @@
         </div>
       </section>
 
-      <!-- Experience -->
+      <!-- Savoir-être -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Savoir-être</h2>
+        <div class="flex flex-wrap gap-3">
+          <div *ngFor="let soft of softSkills"
+               class="bg-primary/10 border border-primary/30 text-secondary px-4 py-2 rounded-lg text-sm font-medium">
+            {{soft}}
+          </div>
+        </div>
+      </section>
+
+      <!-- Parcours Professionnel -->
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Parcours Professionnel</h2>
         <div class="space-y-6">
-          <div *ngFor="let exp of experience" class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-            <div class="flex flex-col sm:flex-row justify-between">
-              <h3 class="text-xl font-semibold text-secondary">{{exp.position}}</h3>
-              <span class="text-primary font-medium">{{exp.period}}</span>
+          <div *ngFor="let exp of experience" class="bg-gray-50 p-5 rounded-lg hover:shadow-md transition-shadow">
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-2">
+              <div>
+                <h3 class="text-xl font-semibold text-secondary">{{exp.position}}</h3>
+                <p class="text-gray-600 font-medium">{{exp.company}}</p>
+              </div>
+              <div class="flex flex-col items-start sm:items-end gap-1">
+                <span class="text-primary font-medium whitespace-nowrap">{{exp.period}}</span>
+                <span class="text-xs bg-primary/20 text-secondary px-2 py-0.5 rounded-full">{{exp.type}}</span>
+              </div>
             </div>
-            <p class="text-gray-600 font-medium">{{exp.company}}</p>
-            <p class="text-gray-700 mt-2">{{exp.description}}</p>
+
+            <!-- Tech stack -->
+            <div class="flex flex-wrap gap-1 mt-3">
+              <span *ngFor="let tech of exp.technologies"
+                    class="bg-secondary/10 text-secondary text-xs px-2 py-0.5 rounded-full">
+                {{tech}}
+              </span>
+            </div>
+
+            <p class="text-gray-700 mt-3 text-sm">{{exp.description}}</p>
+
+            <!-- Achievements -->
+            <ul *ngIf="exp.achievements.length > 0" class="mt-3 space-y-1.5">
+              <li *ngFor="let ach of exp.achievements" class="flex items-start gap-2 text-gray-700 text-sm">
+                <span class="text-primary font-bold mt-0.5 flex-shrink-0">▸</span>
+                <span>{{ach}}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- Education -->
+      <!-- Formation -->
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Formation</h2>
-        <div class="space-y-6">
+        <div class="space-y-4">
           <div *ngFor="let edu of education" class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-            <div class="flex flex-col sm:flex-row justify-between">
-              <h3 class="text-xl font-semibold text-secondary">{{edu.degree}}</h3>
-              <span class="text-primary font-medium">{{edu.period}}</span>
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-2">
+              <div class="flex items-start gap-2">
+                <h3 class="text-lg font-semibold text-secondary">{{edu.degree}}</h3>
+                <span *ngIf="edu.current"
+                      class="flex-shrink-0 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium mt-0.5">
+                  En cours
+                </span>
+              </div>
+              <span class="text-primary font-medium whitespace-nowrap">{{edu.period}}</span>
             </div>
-            <p class="text-gray-600 font-medium">{{edu.institution}}</p>
-            <p class="text-gray-700 mt-2">{{edu.description}}</p>
+            <p class="text-gray-600 font-medium mt-1">{{edu.institution}}</p>
+            <p class="text-gray-700 mt-1 text-sm">{{edu.description}}</p>
           </div>
         </div>
       </section>
 
-      <!-- Skills -->
+      <!-- Compétences -->
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Compétences</h2>
-        <div class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div *ngFor="let category of skillCategories" class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-            <h3 class="text-lg font-semibold text-secondary mb-2">{{category.name}}</h3>
-            <div class="flex flex-wrap gap-2">
-              <span *ngFor="let skill of category.skills" class="bg-primary/20 text-secondary px-3 py-1 rounded-full text-sm">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="text-base font-semibold text-secondary">{{category.name}}</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full font-medium"
+                    [ngClass]="{
+                      'bg-green-100 text-green-800': category.level === 'Avancé',
+                      'bg-blue-100 text-blue-700': category.level === 'Intermédiaire'
+                    }">
+                {{category.level}}
+              </span>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span *ngFor="let skill of category.skills"
+                    class="bg-primary/20 text-secondary px-2.5 py-0.5 rounded-full text-xs">
                 {{skill}}
               </span>
             </div>
@@ -98,36 +160,42 @@
         </div>
       </section>
 
-      <!-- Languages -->
+      <!-- Langues -->
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Langues</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div *ngFor="let lang of languages" class="bg-gray-50 p-4 rounded-lg text-center">
             <h3 class="text-lg font-semibold text-secondary">{{lang.name}}</h3>
-            <p class="text-primary">{{lang.level}}</p>
+            <p class="text-3xl font-bold text-primary mt-1">{{lang.level}}</p>
+            <p class="text-gray-500 text-sm mt-1">{{lang.description}}</p>
           </div>
         </div>
       </section>
 
-      <!-- Hobbies -->
+      <!-- Loisirs -->
       <section>
         <h2 class="text-2xl font-bold text-secondary border-b-2 border-primary pb-2 mb-4">Loisirs</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-          <div *ngFor="let hobby of hobbies" class="bg-gray-50 p-4 rounded-lg text-center hover:bg-primary/10 transition-colors">
-            <p class="text-secondary">{{hobby}}</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div *ngFor="let hobby of hobbies"
+               class="bg-gray-50 p-4 rounded-lg text-center hover:bg-primary/10 transition-colors">
+            <span class="material-icons text-primary text-3xl mb-1">{{hobby.icon}}</span>
+            <p class="text-secondary font-semibold text-sm">{{hobby.label}}</p>
+            <p class="text-gray-500 text-xs mt-0.5">{{hobby.detail}}</p>
           </div>
         </div>
       </section>
+
     </div>
 
     <!-- Footer -->
     <div class="bg-secondary text-white p-6 text-center">
-      <p>© 2025 Hugo DEBRABANDER - Portfolio</p>
+      <p>© 2025 Hugo DE BRABANDER</p>
       <div class="mt-2 flex justify-center space-x-4">
-        <a target="_blank"  href="https://www.linkedin.com/in/hugo-de-brabander/" class="text-primary hover:text-white transition-colors">LinkedIn</a>
-        <a target="_blank" href="https://github.com/LphqhOryhu" class="text-primary hover:text-white transition-colors">GitHub</a>
-        <a href="mailto:{{contactInfo.email}}" class="text-primary hover:text-white transition-colors break-all">Email</a>
+        <a [href]="contactInfo.linkedin" target="_blank" class="text-primary hover:text-white transition-colors">LinkedIn</a>
+        <a [href]="contactInfo.github" target="_blank" class="text-primary hover:text-white transition-colors">GitHub</a>
+        <a [href]="'mailto:' + contactInfo.email" class="text-primary hover:text-white transition-colors break-all">Email</a>
       </div>
     </div>
+
   </div>
 </div>

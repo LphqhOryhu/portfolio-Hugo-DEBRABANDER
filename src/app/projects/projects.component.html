@@ -1,11 +1,10 @@
 <div class="min-h-screen bg-gradient-to-b from-secondary/5 to-white py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
+
     <!-- Header -->
     <div class="text-center mb-12">
       <h1 class="text-5xl font-bold text-secondary mb-4">{{pageTitle}}</h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        {{pageDescription}}
-      </p>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">{{pageDescription}}</p>
       <div class="mt-6">
         <a *ngIf="!projectType" routerLink="/" class="bg-secondary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary/90 transition-colors inline-block">
           Retour à l'accueil
@@ -16,19 +15,146 @@
       </div>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div *ngFor="let project of projects; let i = index" class="project-card bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-        <!-- Project Image -->
+    <!-- MAIN PAGE: two sections -->
+    <ng-container *ngIf="!projectType">
+
+      <!-- Section : Projets récents -->
+      <div class="mb-4">
+        <h2 class="text-2xl font-bold text-secondary">Projets professionnels & personnels</h2>
+        <p class="text-gray-500 mt-1 mb-8">Développement, data, machine learning, IoT</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div *ngFor="let project of proProjects; let i = index"
+             class="project-card bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col">
+
+          <!-- Image or gradient placeholder -->
+          <div class="h-48 relative overflow-hidden flex-shrink-0">
+            <!-- Real image -->
+            <img *ngIf="project.image && !project.image.endsWith('.pdf') && !project.image.endsWith('.pptx')"
+                 [src]="project.image" [alt]="project.title"
+                 class="w-full h-full object-cover cursor-pointer"
+                 (click)="openImageModal(project.image, project.title)">
+
+            <!-- Gradient placeholder (no image) -->
+            <div *ngIf="!project.image"
+                 class="w-full h-full flex items-center justify-center relative"
+                 [style.background]="project.placeholderBg">
+              <span class="text-5xl font-bold text-white/60 select-none">{{project.initials}}</span>
+              <div *ngIf="project.context"
+                   class="absolute top-3 left-3 bg-black/25 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                {{project.context}}
+              </div>
+            </div>
+
+            <!-- PDF/PPTX placeholder -->
+            <div *ngIf="project.image && (project.image.endsWith('.pdf') || project.image.endsWith('.pptx'))"
+                 class="absolute inset-0 flex items-center justify-center text-secondary/50 text-lg font-semibold">
+              {{project.title}}
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/50 to-secondary/30"></div>
+            </div>
+          </div>
+
+          <!-- Card body -->
+          <div class="p-6 flex flex-col flex-1">
+            <!-- Context badge (for projects with real images) -->
+            <span *ngIf="project.context && project.image"
+                  class="inline-block mb-2 text-xs bg-primary/20 text-secondary px-2 py-0.5 rounded-full self-start">
+              {{project.context}}
+            </span>
+
+            <h3 class="text-xl font-bold text-secondary mb-2">{{project.title}}</h3>
+            <p class="text-gray-600 text-sm mb-3">{{project.description}}</p>
+
+            <!-- Achievements -->
+            <ul *ngIf="project.achievements && project.achievements.length > 0" class="mb-4 space-y-1">
+              <li *ngFor="let ach of project.achievements.slice(0, 3)"
+                  class="flex items-start gap-1.5 text-gray-600 text-xs">
+                <span class="text-primary font-bold mt-0.5 flex-shrink-0">▸</span>
+                <span>{{ach}}</span>
+              </li>
+            </ul>
+
+            <!-- Technologies -->
+            <div class="flex flex-wrap gap-1.5 mt-auto pt-2">
+              <span *ngFor="let tech of project.technologies"
+                    class="px-2.5 py-0.5 bg-primary/20 text-secondary text-xs rounded-full">
+                {{tech}}
+              </span>
+            </div>
+
+            <!-- Link -->
+            <a *ngIf="project.link.startsWith('/')"
+               [routerLink]="project.link"
+               class="inline-block mt-4 text-primary font-medium text-sm hover:text-secondary transition-colors">
+              Voir les détails →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section : Projets académiques -->
+      <div class="border-t-2 border-primary/20 pt-10 mb-4">
+        <h2 class="text-2xl font-bold text-secondary">Projets académiques</h2>
+        <p class="text-gray-500 mt-1 mb-8">Réalisations lors du BTS SIO</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div *ngFor="let project of academicProjects; let i = index"
+             class="project-card bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+
+          <!-- Image -->
+          <div class="h-48 bg-primary/30 relative overflow-hidden">
+            <img *ngIf="!project.image.endsWith('.pdf') && !project.image.endsWith('.pptx')"
+                 [src]="project.image" [alt]="project.title"
+                 class="w-full h-full object-cover cursor-pointer"
+                 (click)="openImageModal(project.image, project.title)">
+            <div *ngIf="project.image.endsWith('.pdf') || project.image.endsWith('.pptx')"
+                 class="absolute inset-0 flex items-center justify-center text-secondary/50 text-lg font-semibold">
+              {{project.title}}
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/50 to-secondary/30"></div>
+            </div>
+          </div>
+
+          <!-- Card body -->
+          <div class="p-6">
+            <!-- Special handling for portfolio project -->
+            <h3 *ngIf="project.title === 'Mon Ancien Portfolio'"
+                class="text-xl font-bold text-secondary mb-2 underline"
+                [innerHTML]="portfolioTitleHtml"></h3>
+            <h3 *ngIf="project.title !== 'Mon Ancien Portfolio'"
+                class="text-xl font-bold text-secondary mb-2">{{project.title}}</h3>
+            <p class="text-gray-600 mb-4">{{project.description}}</p>
+
+            <!-- Technologies -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span *ngFor="let tech of project.technologies"
+                    class="px-3 py-1 bg-primary/20 text-secondary text-sm rounded-full">
+                {{tech}}
+              </span>
+            </div>
+
+            <!-- Link -->
+            <a *ngIf="project.link.startsWith('/')"
+               [routerLink]="project.link"
+               class="inline-block mt-2 text-primary font-medium hover:text-secondary transition-colors">
+              Voir les détails →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <!-- SUB-PAGE: project details grid -->
+    <div *ngIf="projectType" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let project of projects; let i = index"
+           class="project-card bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+
+        <!-- Image -->
         <div class="h-48 bg-primary/30 relative overflow-hidden">
-          <!-- Display image if it's a regular image file -->
           <img *ngIf="!project.image.endsWith('.pdf') && !project.image.endsWith('.pptx')"
-               [src]="project.image"
-               [alt]="project.title"
+               [src]="project.image" [alt]="project.title"
                class="w-full h-full object-cover cursor-pointer"
                (click)="openImageModal(project.image, project.title)">
-
-          <!-- Display placeholder with title for PDF or PPTX files -->
           <div *ngIf="project.image.endsWith('.pdf') || project.image.endsWith('.pptx')"
                class="absolute inset-0 flex items-center justify-center text-secondary/50 text-lg font-semibold">
             {{project.title}}
@@ -36,18 +162,15 @@
           </div>
         </div>
 
-        <!-- Project Info -->
+        <!-- Card body -->
         <div class="p-6">
-          <!-- Special handling for portfolio project -->
           <h3 *ngIf="project.title === 'Mon Ancien Portfolio' || (project.originalTitle && project.originalTitle === 'Mon Ancien Portfolio')"
               class="text-xl font-bold text-secondary mb-2 underline"
               [innerHTML]="portfolioTitleHtml"></h3>
-          <!-- Regular title for other projects -->
           <h3 *ngIf="project.title !== 'Mon Ancien Portfolio' && (!project.originalTitle || project.originalTitle !== 'Mon Ancien Portfolio')"
               class="text-xl font-bold text-secondary mb-2">{{project.title}}</h3>
           <p class="text-gray-600 mb-4">{{project.description}}</p>
 
-          <!-- Technologies -->
           <div class="flex flex-wrap gap-2 mb-4">
             <span *ngFor="let tech of project.technologies"
                   class="px-3 py-1 bg-primary/20 text-secondary text-sm rounded-full">
@@ -55,24 +178,9 @@
             </span>
           </div>
 
-          <!-- Link -->
-          <a *ngIf="!projectType && project.link.startsWith('/')"
-             [routerLink]="project.link"
-             class="inline-block mt-2 text-primary font-medium hover:text-secondary transition-colors">
-            Voir les détails →
-          </a>
-          <a *ngIf="!projectType && !project.link.startsWith('/')"
-             [href]="project.link"
-             target="_blank"
-             class="inline-block mt-2 text-primary font-medium hover:text-secondary transition-colors">
-            Voir le projet →
-          </a>
-          <span *ngIf="projectType && project.link === '#'"
-                class="inline-block mt-2 text-gray-400">
-          </span>
-          <a *ngIf="projectType && project.link !== '#'"
-             [href]="project.link"
-             target="_blank"
+          <span *ngIf="project.link === '#'" class="inline-block mt-2 text-gray-400"></span>
+          <a *ngIf="project.link !== '#'"
+             [href]="project.link" target="_blank"
              class="inline-block mt-2 text-primary font-medium hover:text-secondary transition-colors">
             Voir le projet →
           </a>
@@ -82,38 +190,41 @@
 
     <!-- Contact CTA -->
     <div class="mt-16 bg-secondary text-white p-8 rounded-xl text-center">
-      <h2 class="text-3xl font-bold mb-4">Intéressé par mon travail?</h2>
+      <h2 class="text-3xl font-bold mb-4">Intéressé par mon travail ?</h2>
       <p class="text-lg mb-6 max-w-2xl mx-auto">
-        Si vous êtes intéressé par mon travail ou si vous avez un projet en tête, n'hésitez pas à me contacter.
+        N'hésitez pas à me contacter pour discuter d'une opportunité ou d'un projet.
       </p>
-      <a href="mailto:hugodebrabander27310@gmail.com" class="inline-block bg-primary text-secondary px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors break-all">
-        Me contacter
+      <a href="mailto:hugodebrabander27310&#64;gmail.com"
+         class="inline-block bg-primary text-secondary px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors break-all">
+        hugodebrabander27310&#64;gmail.com
       </a>
     </div>
 
     <!-- Footer -->
     <footer class="mt-12 text-center text-gray-600">
-      <p>© 2025 Hugo DEBRABANDER - Portfolio</p>
+      <p>© 2025 Hugo DE BRABANDER</p>
       <div class="mt-2 flex justify-center space-x-4">
         <a target="_blank" href="https://www.linkedin.com/in/hugo-de-brabander/" class="text-secondary hover:text-primary transition-colors">LinkedIn</a>
         <a target="_blank" href="https://github.com/LphqhOryhu" class="text-secondary hover:text-primary transition-colors">GitHub</a>
-        <a href="mailto:hugodebrabander27310@gmail.com" class="text-secondary hover:text-primary transition-colors break-all">Email</a>
+        <a href="mailto:hugodebrabander27310&#64;gmail.com" class="text-secondary hover:text-primary transition-colors break-all">Email</a>
       </div>
     </footer>
+
   </div>
 </div>
 
 <!-- Image Modal -->
-<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75" (click)="closeImageModal()">
-  <div class="relative max-w-4xl max-h-[90vh] overflow-auto bg-white rounded-lg shadow-xl" (click)="$event.stopPropagation()">
-    <!-- Close button -->
-    <button class="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md text-secondary hover:text-primary transition-colors" (click)="closeImageModal()">
+<div *ngIf="showModal"
+     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75"
+     (click)="closeImageModal()">
+  <div class="relative max-w-4xl max-h-[90vh] overflow-auto bg-white rounded-lg shadow-xl"
+       (click)="$event.stopPropagation()">
+    <button class="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md text-secondary hover:text-primary transition-colors"
+            (click)="closeImageModal()">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-
-    <!-- Image -->
     <div class="p-2">
       <img [src]="selectedImage" [alt]="selectedImageTitle" class="max-w-full max-h-[80vh] object-contain">
       <div class="mt-2 p-2 text-center text-secondary font-medium">{{selectedImageTitle}}</div>

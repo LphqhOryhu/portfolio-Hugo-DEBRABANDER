@@ -10,22 +10,60 @@
 
   <!-- Content -->
   <div class="z-10 text-center p-8 max-w-4xl">
-    <h1 class="text-6xl font-bold mb-6 text-secondary animate-fadeIn">
-      <span class="block">Bienvenue sur mon</span>
-      <span class="block text-7xl mt-2 text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Portfolio</span>
+
+    <!-- Name -->
+    <p class="text-secondary/60 text-lg tracking-widest uppercase mb-2 animate-fadeIn">Hugo DE BRABANDER</p>
+
+    <!-- Title -->
+    <h1 class="text-6xl font-bold mb-4 text-secondary animate-fadeIn">
+      <span class="block">Apprenti</span>
+      <span class="block text-7xl mt-1 text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
+        Ingénieur
+      </span>
+      <span class="block text-4xl mt-1 text-secondary/70">en Informatique</span>
     </h1>
 
-    <p class="text-xl mb-6 text-secondary/80 animate-slideUp">
-      Alternant ingénieur en informatique curieux et polyvalent, passionné par le développement sous toutes ses formes
+    <!-- Alternance badge -->
+    <div class="flex justify-center mb-5 animate-slideUp">
+      <span class="inline-flex items-center gap-2 bg-primary/20 border border-primary/40 text-secondary text-sm px-4 py-1.5 rounded-full font-medium">
+        <span class="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse"></span>
+        En recherche d'alternance &middot; 3ème année CESI &middot; Disponible immédiatement
+      </span>
+    </div>
+
+    <!-- Description -->
+    <p class="text-lg mb-6 text-secondary/80 animate-slideUp max-w-2xl mx-auto">
+      Développeur fullstack passionné par le développement web, la data et les nouvelles technologies.
+      Curieux, rigoureux et autonome.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-6 animate-fadeIn animation-delay-300">
-      <a routerLink="/cv" class="interactive-button bg-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold transition-transform hover:scale-105 hover:shadow-lg">
+    <!-- Key tech badges -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8 animate-slideUp">
+      <span *ngFor="let tech of keyTechs"
+            class="bg-white/70 border border-primary/30 text-secondary px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+        {{tech}}
+      </span>
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-wrap justify-center gap-6 mb-10 animate-fadeIn animation-delay-300">
+      <a routerLink="/cv"
+         class="interactive-button bg-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold transition-transform hover:scale-105 hover:shadow-lg">
         Mon CV
       </a>
-      <a routerLink="/projects" class="interactive-button bg-primary text-secondary px-8 py-4 rounded-lg text-lg font-semibold transition-transform hover:scale-105 hover:shadow-lg">
+      <a routerLink="/projects"
+         class="interactive-button bg-primary text-secondary px-8 py-4 rounded-lg text-lg font-semibold transition-transform hover:scale-105 hover:shadow-lg">
         Mes Réalisations
       </a>
     </div>
+
+    <!-- Stats -->
+    <div class="flex justify-center gap-10 animate-fadeIn animation-delay-300">
+      <div *ngFor="let stat of stats" class="text-center">
+        <p class="text-3xl font-bold text-secondary">{{stat.value}}</p>
+        <p class="text-sm text-secondary/60 mt-0.5">{{stat.label}}</p>
+      </div>
+    </div>
+
   </div>
 </div>

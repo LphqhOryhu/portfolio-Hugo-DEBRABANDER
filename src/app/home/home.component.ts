@@ -1,15 +1,24 @@
 import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
   private scrollListener: (() => void) | null = null;
+
+  keyTechs = ['Angular', 'React', 'Node.js', 'Python', 'TypeScript', 'Docker'];
+
+  stats = [
+    { value: '8+', label: 'Projets' },
+    { value: '14', label: 'Compétences' },
+    { value: '2', label: 'Expériences' }
+  ];
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 

@@ -3,14 +3,17 @@ import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-// Interface for project objects
 interface Project {
   title: string;
+  context?: string;
   description: string;
   technologies: string[];
   image: string;
   link: string;
-  originalTitle?: string; // Optional property to store the original title
+  achievements?: string[];
+  placeholderBg?: string;
+  initials?: string;
+  originalTitle?: string;
 }
 
 @Component({
@@ -23,14 +26,12 @@ interface Project {
 export class ProjectsComponent implements AfterViewInit, OnInit {
   projectType: string | null = null;
   pageTitle: string = 'Mes Réalisations';
-  pageDescription: string = 'Explorez des projets concrets mettant en valeur mes compétences en développement, en algorithmie et en réseaux.';
+  pageDescription: string = 'Explorez des projets concrets mettant en valeur mes compétences en développement, data, ML et IoT.';
 
-  // Modal properties
   showModal: boolean = false;
   selectedImage: string = '';
   selectedImageTitle: string = '';
 
-  // Property to store HTML content for portfolio title
   portfolioTitleHtml: SafeHtml;
 
   constructor(
@@ -40,7 +41,6 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
     private router: Router,
     private sanitizer: DomSanitizer
   ) {
-    // Create the HTML for the portfolio title with clickable and animated "portfolio" word
     this.portfolioTitleHtml = this.sanitizer.bypassSecurityTrustHtml(
       '<a href="https://mon-portfolio-tan.vercel.app/" target="_blank" class="portfolio-link">Mon Ancien portfolio</a>'
     );
@@ -51,41 +51,31 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
       this.projectType = data['projectType'] || null;
       this.updateProjectsBasedOnType();
 
-      // Apply HTML title to the first portfolio project when on the portfolio page
       if (this.projectType === 'portfolio' && this.portfolioProjects.length > 0) {
-        // Store the original title for comparison in the HTML template
         this.portfolioProjects[0].originalTitle = this.portfolioProjects[0].title;
       }
     });
   }
 
   ngAfterViewInit(): void {
-    // Set animation delay for staggered appearance
     const projectCards = this.el.nativeElement.querySelectorAll('.project-card');
     projectCards.forEach((card: HTMLElement, index: number) => {
       this.renderer.setStyle(card, '--index', index);
     });
   }
 
-  // Open image modal
   openImageModal(image: string, title: string): void {
-    // Don't open modal for PDF or PPTX files
-    if (image.endsWith('.pdf') || image.endsWith('.pptx')) {
-      return;
-    }
+    if (!image || image.endsWith('.pdf') || image.endsWith('.pptx')) return;
     this.selectedImage = image;
     this.selectedImageTitle = title;
     this.showModal = true;
-    // Prevent scrolling when modal is open
     document.body.style.overflow = 'hidden';
   }
 
-  // Close image modal
   closeImageModal(): void {
     this.showModal = false;
     this.selectedImage = '';
     this.selectedImageTitle = '';
-    // Restore scrolling
     document.body.style.overflow = '';
   }
 
@@ -108,8 +98,8 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
           this.projects = this.easySaveProjects;
           break;
         case 'recherche-operationnel':
-          this.pageTitle = 'Projet R.O.';
-          this.pageDescription = 'Application des méthodes de recherche opérationnelle pour optimiser des processus.';
+          this.pageTitle = 'Projet R.O. — VRP';
+          this.pageDescription = 'Implémentation et comparaison de trois algorithmes d\'optimisation pour le problème de tournées de véhicules.';
           this.projects = this.rechercheOperationnelProjects;
           break;
         case 'gestionstage':
@@ -129,8 +119,116 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
     }
   }
 
-  // Main projects list for the main projects page
-  projects: Project[] = [
+  // Used for sub-pages only
+  projects: Project[] = [];
+
+  // Professional & personal projects (from profile.json)
+  proProjects: Project[] = [
+    {
+      title: 'TwYster — Réseau social microservices',
+      context: 'Architecture microservices',
+      description: 'Réseau social type Twitter/X en architecture microservices. 8 services indépendants orchestrés via Docker et Nginx, frontend React mobile-first, authentification JWT, bases hybrides MongoDB et PostgreSQL.',
+      technologies: ['React', 'Node.js', 'Express', 'Docker', 'Nginx', 'MongoDB', 'PostgreSQL', 'JWT'],
+      image: '',
+      link: '#',
+      placeholderBg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      initials: 'TW',
+      achievements: [
+        '8 services découplés (User, Auth, Post, Like, Message, Media, Signalement) orchestrés via Docker et reverse proxy Nginx',
+        'Stack hybride : React mobile-first, Node.js/Express, MongoDB (Mongoose) et PostgreSQL (Prisma), authentification JWT',
+        'Fonctionnalités complètes : posts, likes, messagerie privée, upload média, modération, internationalisation'
+      ]
+    },
+    {
+      title: 'Simulateur de borne OCPP',
+      context: 'SGA Mobility',
+      description: 'Simulateur complet de borne de recharge électrique utilisant le protocole OCPP pour tester les systèmes de supervision sans matériel physique.',
+      technologies: ['Node.js', 'OCPP', 'WebSocket', 'JavaScript'],
+      image: '',
+      link: '#',
+      placeholderBg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      initials: 'OC',
+      achievements: [
+        'Simulation complète du cycle de vie d\'une borne : boot, autorisation, session de charge',
+        'Remplacement du besoin de matériel physique — supprime une longue étape de vérification manuelle'
+      ]
+    },
+    {
+      title: 'Refonte de la supervision',
+      context: 'SGA Mobility',
+      description: 'Refonte de l\'interface de supervision du parc de bornes de recharge — nouvelle architecture frontend Angular, amélioration UX et monitoring temps réel.',
+      technologies: ['Angular', 'TypeScript', 'REST API', 'Dashboard'],
+      image: '',
+      link: '#',
+      placeholderBg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+      initials: 'SV',
+      achievements: [
+        'Refonte complète de l\'architecture frontend Angular',
+        'Amélioration significative de l\'expérience utilisateur',
+        'Intégration de nouveaux indicateurs de monitoring temps réel'
+      ]
+    },
+    {
+      title: 'Entrepôt de données & pipeline ETL',
+      context: 'Big Data & ETL',
+      description: 'Conception et déploiement d\'un data warehouse avec pipeline ETL complet : extraction depuis sources hétérogènes, transformation et chargement vers HDFS/Hive via Talend.',
+      technologies: ['Talend', 'HDFS', 'Hive', 'Hadoop', 'SQL', 'ETL'],
+      image: '',
+      link: '#',
+      placeholderBg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      initials: 'BD',
+      achievements: [
+        'Conception du modèle de données en étoile',
+        'Développement des jobs ETL pour l\'alimentation automatique',
+        'Requêtes analytiques HiveQL pour reporting et KPI'
+      ]
+    },
+    {
+      title: 'Prédiction d\'attrition RH',
+      context: 'Machine Learning',
+      description: 'Pipeline ML complet de prédiction de départ de salariés (classification binaire) sur IBM HR Analytics — 4 410 employés. Comparaison de 6 modèles et analyse what-if.',
+      technologies: ['Python', 'scikit-learn', 'pandas', 'numpy', 'matplotlib', 'Google Colab'],
+      image: '',
+      link: '#',
+      placeholderBg: 'linear-gradient(135deg, #4481eb 0%, #04befe 100%)',
+      initials: 'ML',
+      achievements: [
+        'Pipeline complet : chargement multi-CSV, nettoyage, encodage, split train/test anti-leakage',
+        'Comparaison de 6 modèles : Perceptron, Régression Logistique, SVM, KNN, Decision Tree, Random Forest',
+        'Analyse what-if : identification des variables RH à fort impact sur l\'attrition'
+      ]
+    },
+    {
+      title: 'Résolution du VRP par métaheuristiques',
+      context: 'Recherche Opérationnelle',
+      description: 'Implémentation et comparaison de trois algorithmes d\'optimisation pour le problème de tournées de véhicules (VRP) sur un graphe réel.',
+      technologies: ['Python', 'NumPy', 'NetworkX', 'Algorithme génétique', 'Recuit simulé'],
+      image: 'assets/images/ro.png',
+      link: '/projects/recherche-operationnel',
+      achievements: [
+        'Algorithme génétique : sélection par tournoi, croisement ordonné, mutation intra/inter-chemin',
+        'Recuit simulé : refroidissement adaptatif, 3 opérateurs de voisinage (swap, move, inter-swap)',
+        'Comparaison quantitative des performances (coût, temps d\'exécution) sur instance réelle'
+      ]
+    },
+    {
+      title: 'Projet IoT — Communication inter-objets',
+      context: 'IoT & Systèmes embarqués',
+      description: 'Architecture IoT avec protocoles Zigbee, MQTT, LoRa et BLE pour la communication entre objets connectés et remontée de données vers des services tiers.',
+      technologies: ['MQTT', 'Zigbee', 'LoRa', 'BLE', 'Python'],
+      image: '',
+      link: '#',
+      placeholderBg: 'linear-gradient(135deg, #0ba360 0%, #3cba92 100%)',
+      initials: 'IoT',
+      achievements: [
+        'Mise en œuvre d\'une architecture de communication multi-protocoles (Zigbee, MQTT, LoRa, BLE)',
+        'Remontée de données vers services tiers en temps réel'
+      ]
+    }
+  ];
+
+  // Academic projects (BTS era)
+  academicProjects: Project[] = [
     {
       title: 'Mon Ancien Portfolio',
       description: 'Découvrez mon ancien portfolio et son évolution.',
@@ -147,40 +245,33 @@ export class ProjectsComponent implements AfterViewInit, OnInit {
     },
     {
       title: 'Projet EASY SAVE',
-      description: 'Une solution logicielle complète de sauvegarde locale avec cryptage, suivi et personnalisation.',
+      description: 'Solution logicielle complète de sauvegarde locale avec cryptage, suivi en temps réel et personnalisation.',
       technologies: ['C#', '.NET WPF', 'Cryptage', 'Multithreading'],
       image: 'assets/images/easysave.png',
       link: '/projects/easysave'
     },
     {
-      title: 'Projet R.O.',
-      description: 'Application d\'algorithmes évolués pour répondre à des enjeux logistiques et environnementaux.',
-      technologies: ['Python', 'Recuit simulé', 'Algorithme génétique', 'Optimisation de graphes'],
-      image: 'assets/images/ro.png',
-      link: '/projects/recherche-operationnel'
-    },
-    {
       title: 'Projet Stage',
-      description: 'Une plateforme de gestion des stages pour les étudiants et les entreprises.',
+      description: 'Plateforme de gestion des stages pour étudiants et entreprises, avec suivi et administration.',
       technologies: ['PHP', 'MySQL', 'Bootstrap'],
       image: 'assets/images/gestion.png',
       link: '/projects/gestionstage'
     },
     {
       title: 'Projet TimeTrack',
-      description: 'Un système de suivi du temps pour améliorer la productivité.',
+      description: 'Système de pointage et suivi du temps de travail avec gestion des droits et sécurité.',
       technologies: ['C#', 'SQL Server', 'Entity Framework'],
       image: 'assets/images/timetrack.png',
       link: '/projects/timetrack'
     }
   ];
 
-  // Specific project details for each category
+  // Sub-page project detail arrays
   portfolioProjects: Project[] = [
     {
       title: 'Page d\'accueil',
       description: 'La page d\'accueil de mon ancien portfolio.',
-      technologies: ['HTML', 'TailwindCSS', 'JavaScript', 'Angular','Parallaxe'],
+      technologies: ['HTML', 'TailwindCSS', 'JavaScript', 'Angular', 'Parallaxe'],
       image: 'assets/images/ancien-portfolio-acceuil.png',
       link: '#'
     },
